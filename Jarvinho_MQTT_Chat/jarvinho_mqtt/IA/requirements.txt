@@ -1,10 +1,8 @@
-streamlit
 langchain
 langchain-community
-langchain-openai
 langchain-ollama
 langchain-text-splitters
 faiss-cpu
 pypdf
-python-dotenv
 paho-mqtt
+ddgs

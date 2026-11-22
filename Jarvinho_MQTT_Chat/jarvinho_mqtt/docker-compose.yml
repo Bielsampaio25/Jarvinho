@@ -1,0 +1,55 @@
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: jarvinho-ollama
+    restart: unless-stopped
+
+    volumes:
+      - ollama_data:/root/.ollama
+
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  ollama-models:
+    image: ollama/ollama:latest
+    container_name: jarvinho-models
+
+    depends_on:
+      ollama:
+        condition: service_healthy
+
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+
+    volumes:
+      - ollama_data:/root/.ollama
+
+    entrypoint: ["/bin/sh", "-c"]
+
+    command: >
+      ollama pull qwen3.5:0.8b &&
+      ollama pull qwen3-embedding:0.6b
+
+    restart: "no"
+
+  jarvinho:
+    build:
+      context: ./IA
+      dockerfile: Dockerfile
+
+    container_name: jarvinho-backend
+    restart: unless-stopped
+
+    depends_on:
+      ollama-models:
+        condition: service_completed_successfully
+
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+
+volumes:
+  ollama_data:

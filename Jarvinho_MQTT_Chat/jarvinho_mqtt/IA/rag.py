@@ -1,6 +1,4 @@
 
-
-
 from pathlib import Path
 
 from ddgs import DDGS
@@ -16,7 +14,7 @@ from langchain_core.prompts import ChatPromptTemplate
 
 def criar_chain_agente():
 
-    caminho_pdf = Path(__file__).parent.parent / "Jarvinho.pdf"
+    caminho_pdf = Path(__file__).parent / "Jarvinho.pdf"
 
     carregador = PyPDFLoader(str(caminho_pdf))
     documentos = carregador.load()
@@ -29,7 +27,15 @@ def criar_chain_agente():
     blocos = separador.split_documents(documentos)
 
     embeddings = OllamaEmbeddings(
-        model="qwen3-embedding:0.6b"
+        model="qwen3-embedding:0.6b",
+        base_url="http://ollama:11434"
+    )
+
+    llm = ChatOllama(
+        model="qwen3.5:0.8b",
+        reasoning=False,
+        temperature=0.5,
+        base_url="http://ollama:11434"
     )
 
     banco_vetores = FAISS.from_documents(
@@ -39,12 +45,6 @@ def criar_chain_agente():
 
     buscador_contexto = banco_vetores.as_retriever(
         search_kwargs={"k": 4}
-    )
-
-    llm = ChatOllama(
-        model="qwen3.5:0.8b",
-        reasoning=False,
-        temperature=0.5
     )
 
     def formatar_contexto(documentos):
