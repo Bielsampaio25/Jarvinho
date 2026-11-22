@@ -1,13 +1,15 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jarvinho</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
-  <script src="app.js" defer></script>
+  <script src="./js/lib/mqtt.min.js"></script>
+  <script src="./app.js" defer></script>
 </head>
+
 <body>
   <main class="app">
     <aside class="sidebar">
@@ -17,12 +19,14 @@
       </div>
       <div class="connection-card">
         <span class="status-dot" id="statusDot"></span>
-        <div><strong id="connectionTitle">Desconectado</strong><small id="connectionText">Aguardando conexão MQTT</small></div>
+        <div><strong id="connectionTitle">Desconectado</strong><small id="connectionText">Aguardando conexão
+            MQTT</small></div>
       </div>
       <div class="side-note">
         <span class="eyebrow">SEU ROBÔ</span>
         <h2>Uma conversa mais próxima.</h2>
-        <p>Envie uma mensagem pelo navegador. O ESP32 recebe pelo MQTT, consulta o Gemini e devolve a resposta para este chat.</p>
+        <p>Envie uma mensagem pelo navegador. O ESP32 recebe pelo MQTT, consulta o Gemini e devolve a resposta para este
+          chat.</p>
       </div>
       <div class="sidebar-footer">ESP32-C3 · MQTT · Gemini</div>
     </aside>
@@ -48,11 +52,13 @@
       <div class="typing" id="typing" hidden><span></span><span></span><span></span> Jarvinho está pensando...</div>
 
       <form class="composer" id="chatForm">
-        <input id="messageInput" type="text" placeholder="Digite sua mensagem..." autocomplete="off" maxlength="1000" disabled>
+        <input id="messageInput" type="text" placeholder="Digite sua mensagem..." autocomplete="off" maxlength="1000"
+          disabled>
         <button id="sendButton" type="submit" disabled aria-label="Enviar mensagem">Enviar <span>➤</span></button>
       </form>
       <p class="hint">As mensagens são transmitidas pelo broker MQTT configurado em <code>app.js</code>.</p>
     </section>
   </main>
 </body>
+
 </html>

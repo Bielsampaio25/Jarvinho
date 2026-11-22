@@ -1,10 +1,8 @@
-
-
 const MQTT_CONFIG = {
-  brokerWs: "ws://broker.hivemq.com:8000/mqtt",
-  topicQuestion: "jarvinho/chat/pergunta",
-  topicAnswer: "jarvinho/chat/resposta",
-  topicStatus: "jarvinho/status"
+    brokerWs: "ws://127.0.0.1:9001/mqtt",
+    topicQuestion: "jarvinho/chat/pergunta",
+    topicAnswer: "jarvinho/chat/resposta",
+    topicStatus: "jarvinho/status"
 };
 
 const clientId =
