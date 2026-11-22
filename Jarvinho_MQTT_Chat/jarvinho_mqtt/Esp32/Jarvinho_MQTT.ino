@@ -13,7 +13,7 @@
 const char* WIFI_SSID = "Gabriel_Planet/3212-1433-2.4";
 const char* WIFI_PASSWORD = "As250407";
 
-const char* MQTT_HOST = "broker.hivemq.com";
+const char* MQTT_HOST = "broker.emqx.io";
 const int MQTT_PORT = 1883;
 
 // O backend Python recebe as perguntas e publica as respostas.

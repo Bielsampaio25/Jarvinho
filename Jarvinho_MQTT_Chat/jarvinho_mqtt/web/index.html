@@ -1,64 +1,132 @@
+
 <!doctype html>
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jarvinho</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="./js/lib/mqtt.min.js"></script>
-  <script src="./app.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvinho</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./js/lib/mqtt.min.js"></script>
+    <script src="./app.js" defer></script>
 </head>
 
 <body>
-  <main class="app">
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-icon">J</div>
-        <div><strong>Jarvinho</strong><span>Seu assistente pessoal</span></div>
-      </div>
-      <div class="connection-card">
-        <span class="status-dot" id="statusDot"></span>
-        <div><strong id="connectionTitle">Desconectado</strong><small id="connectionText">Aguardando conexão
-            MQTT</small></div>
-      </div>
-      <div class="side-note">
-        <span class="eyebrow">SEU ROBÔ</span>
-        <h2>Uma conversa mais próxima.</h2>
-        <p>Envie uma mensagem pelo navegador. O ESP32 recebe pelo MQTT, consulta o Gemini e devolve a resposta para este
-          chat.</p>
-      </div>
-      <div class="sidebar-footer">ESP32-C3 · MQTT · Gemini</div>
-    </aside>
+    <main class="app">
 
-    <section class="chat">
-      <header class="chat-header">
-        <div class="avatar">J</div>
-        <div class="header-copy">
-          <h1>Conversa com Jarvinho</h1>
-          <p id="headerStatus">Conectando ao broker MQTT...</p>
-        </div>
-        <button class="clear-button" id="clearButton" type="button" title="Limpar conversa">Limpar</button>
-      </header>
+        <aside class="sidebar">
 
-      <section class="messages" id="messages" aria-live="polite">
-        <div class="welcome" id="welcome">
-          <div class="welcome-face">◡</div>
-          <h2>Olá! Eu sou o Jarvinho.</h2>
-          <p>Estou pronto para conversar. Quando o robô estiver conectado, mande sua primeira mensagem.</p>
-        </div>
-      </section>
+            <div class="brand">
+                <div class="brand-icon">J</div>
+                <div>
+                    <strong>Jarvinho</strong>
+                    <span>Seu assistente pessoal</span>
+                </div>
+            </div>
 
-      <div class="typing" id="typing" hidden><span></span><span></span><span></span> Jarvinho está pensando...</div>
+            <div class="connection-card">
+                <span class="status-dot" id="statusDot"></span>
 
-      <form class="composer" id="chatForm">
-        <input id="messageInput" type="text" placeholder="Digite sua mensagem..." autocomplete="off" maxlength="1000"
-          disabled>
-        <button id="sendButton" type="submit" disabled aria-label="Enviar mensagem">Enviar <span>➤</span></button>
-      </form>
-      <p class="hint">As mensagens são transmitidas pelo broker MQTT configurado em <code>app.js</code>.</p>
-    </section>
-  </main>
+                <div>
+                    <strong id="connectionTitle">Desconectado</strong>
+                    <small id="connectionText">Aguardando conexão MQTT</small>
+                </div>
+            </div>
+
+            <div class="side-note">
+                <span class="eyebrow">SEU ROBÔ</span>
+
+                <h2>Uma conversa mais próxima.</h2>
+
+                <p>
+                    Converse com o Jarvinho pelo navegador.
+                    Suas mensagens são processadas por uma
+                    inteligência artificial com conhecimento
+                    próprio, documentos e pesquisa na internet.
+                </p>
+            </div>
+
+            <div class="sidebar-footer">
+                Python · Ollama · RAG · MQTT
+            </div>
+
+        </aside>
+
+        <section class="chat">
+
+            <header class="chat-header">
+
+                <div class="avatar">J</div>
+
+                <div class="header-copy">
+                    <h1>Conversa com Jarvinho</h1>
+                    <p id="headerStatus">Conectando ao broker MQTT...</p>
+                </div>
+
+                <button
+                    class="clear-button"
+                    id="clearButton"
+                    type="button"
+                    title="Limpar conversa">
+                    Limpar
+                </button>
+
+            </header>
+
+            <section class="messages" id="messages" aria-live="polite">
+
+                <div class="welcome" id="welcome">
+                    <div class="welcome-face">◡</div>
+
+                    <h2>Olá! Eu sou o Jarvinho.</h2>
+
+                    <p>
+                        Estou pronto para conversar!
+                        Pergunte sobre qualquer assunto
+                        e vamos começar.
+                    </p>
+                </div>
+
+            </section>
+
+            <div class="typing" id="typing" hidden>
+                <span></span>
+                <span></span>
+                <span></span>
+                Jarvinho está pensando...
+            </div>
+
+            <form class="composer" id="chatForm">
+
+                <input
+                    id="messageInput"
+                    type="text"
+                    placeholder="Digite sua mensagem..."
+                    autocomplete="off"
+                    maxlength="1000"
+                    disabled
+                >
+
+                <button
+                    id="sendButton"
+                    type="submit"
+                    disabled
+                    aria-label="Enviar mensagem">
+
+                    Enviar <span>➤</span>
+
+                </button>
+
+            </form>
+
+            <p class="hint">
+                As mensagens são transmitidas pelo broker MQTT.
+                As respostas são geradas pelo Jarvinho.
+            </p>
+
+        </section>
+
+    </main>
 </body>
 
 </html>

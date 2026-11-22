@@ -1,4 +1,5 @@
 
+
 import json
 import threading
 
@@ -7,12 +8,13 @@ import paho.mqtt.client as mqtt
 from rag import criar_chain_agente
 
 
-BROKER = "localhost"
+BROKER = "broker.emqx.io"
 PORT = 1883
 
 TOPIC_QUESTION = "jarvinho/chat/pergunta"
 TOPIC_ANSWER = "jarvinho/chat/resposta"
 TOPIC_STATUS = "jarvinho/status"
+
 
 print("Inicializando o sistema RAG...")
 
@@ -53,7 +55,7 @@ def processar_pergunta(client, data):
 
     try:
 
-        resposta = chain.invoke(pergunta)
+        resposta = chain(pergunta)
 
         payload = json.dumps({
             "id": message_id,
@@ -100,7 +102,7 @@ def on_connect(client, userdata, flags, reason_code, properties):
 
     if reason_code == 0:
 
-        print("Conectado ao broker MQTT!")
+        print("Conectado ao broker MQTT público da EMQX!")
 
         client.subscribe(TOPIC_QUESTION, qos=1)
 
@@ -140,7 +142,8 @@ client = mqtt.Client(
 client.on_connect = on_connect
 client.on_message = on_message
 
-print("Conectando ao HiveMQ...")
+
+print("Conectando ao broker MQTT público da EMQX...")
 
 client.connect(BROKER, PORT, 60)
 
